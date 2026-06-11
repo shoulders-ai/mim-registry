@@ -1,0 +1,21 @@
+{
+  "manifestVersion": 1,
+  "packages": [
+    {
+      "id": "github-monitor",
+      "name": "GitHub Monitor",
+      "description": "Org-wide GitHub issues, PRs, project boards, and activity with saved views and AI summaries.",
+      "repo": "https://github.com/bitowaqr/mim-github-monitor",
+      "version": "0.1.0",
+      "ref": "main",
+      "commit": "83e4a9331501ff64e37f99712d4309f5bbc78ae2",
+      "permissions": {
+        "http": ["api.github.com"],
+        "secrets": ["github_token"]
+      },
+      "engines": {
+        "mim": "runtime-v1"
+      }
+    }
+  ]
+}
