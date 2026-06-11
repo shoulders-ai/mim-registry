@@ -1,44 +1,37 @@
-# Mim Package Registry
+# mim-registry
 
-Central registry for [Mim](https://github.com/shoulders-ai) packages. Everything goes through the GitHub org **shoulders-ai**.
+The package registry for [Mim](https://github.com/bitowaqr/shoulders-v0-3). One file, no server: the Mim app clones this repo, reads `index.json`, and shows the listed packages in its Apps surface.
 
-## How it works
+## How installs work
 
-This repo contains a single `index.json` file that lists available packages with their repo URLs, pinned commits, declared permissions, and engine requirements. The Mim runtime clones this repo as a local mirror and reads the index — no server needed.
+Each entry pins a package to an exact git commit. The installer clones `repo`, checks out `ref`, verifies HEAD equals `commit` (refusing moved tags), and copies only `path` (when set) into `~/.mim/packages/<id>/<version>/`. Declared `permissions` must match the package manifest byte-for-byte or the install is refused.
 
-### For users
+Most entries point at the [shoulders-ai/mim-packages](https://github.com/shoulders-ai/mim-packages) monorepo via `path`, but any public HTTPS git repo works.
 
-```
-registry.list                              # browse available packages
-package.install { id: "github-monitor" }   # install from registry
-package.update  { id: "github-monitor" }   # update to latest
-```
-
-Or in the Mim UI: **Package Manager → Browse registry → Install**.
-
-### For package authors
-
-To add a package, open a PR that adds an entry to `index.json`:
+## Entry schema
 
 ```json
 {
-  "id": "your-package",
-  "name": "Human Name",
-  "description": "One line.",
-  "repo": "https://github.com/shoulders-ai/mim-your-package",
-  "version": "1.0.0",
-  "ref": "v1.0.0",
-  "commit": "<full 40-char git sha>",
-  "permissions": { "http": ["api.example.com"], "secrets": ["api_key"] },
+  "id": "slides",
+  "name": "Slides",
+  "description": "One line shown in the registry browser.",
+  "repo": "https://github.com/shoulders-ai/mim-packages",
+  "path": "packages/slides",
+  "version": "0.1.0",
+  "ref": "slides-v0.1.0",
+  "commit": "<full 40-char SHA>",
+  "permissions": { "workspace": { "read": true, "write": true } },
   "engines": { "mim": "runtime-v1" }
 }
 ```
 
-**Requirements:**
-- `repo` must be HTTPS
-- `commit` must be the full SHA that `ref` points to (tag moves are rejected at install time)
-- `version` must be valid semver (`x.y.z` with optional prerelease)
-- `permissions` must exactly match the package's `package.json` `mim.permissions` — mismatches are refused at install time
-- No submodules, no symlinks in the package tree
+- `repo` must be HTTPS. `commit` must be the full 40-character SHA the `ref` resolves to.
+- `path` (optional) is a repo-relative subdirectory with no `.` or `..` segments; omit it when the package is the repo root.
+- `version` must match the package manifest's version exactly.
+- `permissions` must equal the package manifest's `mim.permissions` exactly.
 
-Curation = PR review. The registry is append-only by convention; removal requires a separate PR with justification.
+## Adding or updating a package
+
+1. Tag the release in the package repo (`<id>-v<version>` in mim-packages).
+2. Open a PR here editing `index.json` with the new `version`, `ref`, and `commit`.
+3. Review = reading the pinned diff in the package repo. Merging publishes.

@@ -2,20 +2,52 @@
   "manifestVersion": 1,
   "packages": [
     {
+      "id": "slides",
+      "name": "Slides",
+      "description": "Generates slide decks as paginated HTML and exports a print-exact PDF.",
+      "repo": "https://github.com/shoulders-ai/mim-packages",
+      "path": "packages/slides",
+      "version": "0.1.0",
+      "ref": "slides-v0.1.0",
+      "commit": "c4987a1a8f607ce56138f81cebe8cec77b50e4e0",
+      "permissions": {
+        "workspace": { "read": true, "write": true },
+        "ai": true
+      },
+      "engines": { "mim": "runtime-v1" }
+    },
+    {
+      "id": "docx-review",
+      "name": "DOCX Review",
+      "description": "Runs a structured academic peer-review workflow and writes comments back into a Word revision copy.",
+      "repo": "https://github.com/shoulders-ai/mim-packages",
+      "path": "packages/docx-review",
+      "version": "0.1.0",
+      "ref": "docx-review-v0.1.0",
+      "commit": "c4987a1a8f607ce56138f81cebe8cec77b50e4e0",
+      "permissions": {
+        "workspace": { "read": true, "write": true },
+        "ai": true,
+        "http": ["api.crossref.org", "api.openalex.org"]
+      },
+      "engines": { "mim": "runtime-v1" }
+    },
+    {
       "id": "github-monitor",
       "name": "GitHub Monitor",
       "description": "Org-wide GitHub issues, PRs, project boards, and activity with saved views and AI summaries.",
-      "repo": "https://github.com/bitowaqr/mim-github-monitor",
+      "repo": "https://github.com/shoulders-ai/mim-packages",
+      "path": "packages/github-monitor",
       "version": "0.1.0",
-      "ref": "main",
-      "commit": "83e4a9331501ff64e37f99712d4309f5bbc78ae2",
+      "ref": "github-monitor-v0.1.0",
+      "commit": "c4987a1a8f607ce56138f81cebe8cec77b50e4e0",
       "permissions": {
+        "workspace": { "read": true, "write": true },
+        "ai": true,
         "http": ["api.github.com"],
         "secrets": ["github_token"]
       },
-      "engines": {
-        "mim": "runtime-v1"
-      }
+      "engines": { "mim": "runtime-v1" }
     }
   ]
 }
