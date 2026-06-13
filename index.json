@@ -62,6 +62,34 @@
         "workspace": { "read": true, "write": true }
       },
       "engines": { "mim": "runtime-v1" }
+    },
+    {
+      "id": "board",
+      "name": "Board",
+      "description": "Kanban issue board with package-owned issue tools and workspace data in issues/.",
+      "repo": "https://github.com/shoulders-ai/mim-packages",
+      "path": "packages/board",
+      "version": "0.1.0",
+      "ref": "board-v0.1.0",
+      "commit": "0d1cdd24ecd77a595fdc8c21e80577cfe8471c30",
+      "permissions": {
+        "workspace": { "read": true, "write": true }
+      },
+      "engines": { "mim": "runtime-v1" }
+    },
+    {
+      "id": "knowledge",
+      "name": "Knowledge",
+      "description": "Markdown knowledge base with package-owned knowledge tools and workspace data in knowledge/.",
+      "repo": "https://github.com/shoulders-ai/mim-packages",
+      "path": "packages/knowledge",
+      "version": "0.1.0",
+      "ref": "knowledge-v0.1.0",
+      "commit": "0d1cdd24ecd77a595fdc8c21e80577cfe8471c30",
+      "permissions": {
+        "workspace": { "read": true, "write": true }
+      },
+      "engines": { "mim": "runtime-v1" }
     }
   ]
 }
