@@ -48,6 +48,20 @@
         "secrets": ["github_token"]
       },
       "engines": { "mim": "runtime-v1" }
+    },
+    {
+      "id": "import-md",
+      "name": "Import to Markdown",
+      "description": "Converts Word, Excel, BibTeX, and selectable PDF files into AI-ready Markdown.",
+      "repo": "https://github.com/shoulders-ai/mim-packages",
+      "path": "packages/import-md",
+      "version": "0.1.0",
+      "ref": "import-md-v0.1.0",
+      "commit": "7f89fc6b6c01be3df7b8ce42f3c57dc1af5804ae",
+      "permissions": {
+        "workspace": { "read": true, "write": true }
+      },
+      "engines": { "mim": "runtime-v1" }
     }
   ]
 }
